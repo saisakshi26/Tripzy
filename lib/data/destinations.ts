@@ -1,0 +1,242 @@
+import type { Destination, FilterTag } from '@/types';
+import { goa } from './goa';
+import { karnataka } from './karnataka';
+import { kerala } from './kerala';
+import { maharashtra } from './maharashtra';
+import { meghalaya } from './meghalaya';
+import { rajasthan } from './rajasthan';
+import { tamilnadu } from './tamilnadu';
+import { telangana } from './telangana';
+
+type Meta = Omit<Destination, 'areas' | 'attractions' | 'restaurants' | 'image'>;
+
+const img = (id: string) => `/images/destinations/${id}.jpg`;
+
+const metas: { meta: Meta; content: typeof kerala }[] = [
+  {
+    content: maharashtra,
+    meta: {
+      id: 'maharashtra',
+      name: 'Maharashtra',
+      short: 'Forts, trekking & coastlines',
+      tagline: 'Sea forts, Sahyadri trails and Mumbai after dark.',
+      imageQuery: 'Maharashtra Sahyadri fort monsoon India',
+      tags: ['Adventure', 'Heritage', 'Beaches', 'Food', 'Nightlife', 'Budget'],
+      dailyBudget: [2200, 9000],
+      bestSeason: 'Oct–Feb for the coast and cities; Jul–Sep for monsoon trekking',
+      bestMonths: [10, 11, 12, 1, 2, 3],
+      offSeasonNote: 'Summer (Apr–Jun) is hot and humid on the coast; monsoon brings heavy rain but lush Sahyadri trails.',
+      experiences: ['Fort treks in the Sahyadris', 'Sea-fort boat rides', 'Ajanta–Ellora cave temples', 'Mumbai street-food nights'],
+      popular: ['Gateway of India', 'Elephanta Caves', 'Lohagad Fort', 'Murud-Janjira', 'Ajanta & Ellora'],
+      overview: 'Maharashtra pairs the energy of Mumbai with Maratha forts, monsoon-green hills, a long Konkan coastline and two of India’s greatest cave-temple complexes.',
+      food: ['Vada pav', 'Misal pav', 'Puran poli', 'Malvani seafood', 'Pav bhaji'],
+      suggestedDays: '5–7 days',
+      tips: ['Book Elephanta ferries early in the day.', 'Ajanta is closed on Mondays and Ellora on Tuesdays.', 'Fort treks are best started at dawn; avoid them in heavy rain.'],
+      expenses: [
+        { label: 'Stay (per room/night)', value: '₹1,200 – ₹12,000' },
+        { label: 'Meals (per person/day)', value: '₹400 – ₹2,500' },
+        { label: 'Local transport (per day)', value: '₹500 – ₹2,500' },
+      ],
+      priceIndex: 1.1,
+    },
+  },
+  {
+    content: telangana,
+    meta: {
+      id: 'telangana',
+      name: 'Telangana',
+      short: 'Heritage & city vibes',
+      tagline: 'Nizami grandeur, Kakatiya temples and unforgettable biryani.',
+      imageQuery: 'Hyderabad Charminar India',
+      tags: ['Heritage', 'Food', 'Nightlife', 'Budget'],
+      dailyBudget: [1800, 7000],
+      bestSeason: 'Oct–Feb',
+      bestMonths: [10, 11, 12, 1, 2],
+      offSeasonNote: 'Summer (Mar–Jun) is very hot; plan indoor sights for midday.',
+      experiences: ['Old City heritage walks', 'Biryani and Irani-chai crawls', 'UNESCO Kakatiya temples', 'Forest hills near Vikarabad'],
+      popular: ['Charminar', 'Golconda Fort', 'Chowmahalla Palace', 'Ramappa Temple', 'Ramoji Film City'],
+      overview: 'Hyderabad’s Nizami heritage, pearl bazaars and food culture sit alongside Warangal’s Kakatiya temples and the green hills near Vikarabad.',
+      food: ['Hyderabadi biryani', 'Haleem (seasonal)', 'Irani chai & Osmania biscuits', 'Double ka meetha', 'Sarvapindi'],
+      suggestedDays: '3–5 days',
+      tips: ['Visit Charminar after sunset when the area comes alive.', 'Ramoji Film City needs a full day.', 'Haleem is a Ramzan speciality — availability varies.'],
+      expenses: [
+        { label: 'Stay (per room/night)', value: '₹1,000 – ₹10,000' },
+        { label: 'Meals (per person/day)', value: '₹300 – ₹2,000' },
+        { label: 'Local transport (per day)', value: '₹400 – ₹2,000' },
+      ],
+      priceIndex: 0.95,
+    },
+  },
+  {
+    content: kerala,
+    meta: {
+      id: 'kerala',
+      name: 'Kerala',
+      short: 'Backwaters & nature',
+      tagline: 'Slow water, spice hills and warm hospitality.',
+      imageQuery: 'Kerala backwaters houseboat India',
+      tags: ['Nature', 'Romantic', 'Food', 'Beaches', 'Adventure'],
+      dailyBudget: [2500, 11000],
+      bestSeason: 'Sep–Mar',
+      bestMonths: [9, 10, 11, 12, 1, 2, 3],
+      offSeasonNote: 'Monsoon (Jun–Aug) is lush and cheaper but houseboat cruising and trekking are limited.',
+      experiences: ['Houseboat cruise', 'Tea-estate walks', 'Periyar boat safari', 'Kathakali & Kalaripayattu'],
+      popular: ['Fort Kochi', 'Munnar tea gardens', 'Periyar Lake', 'Alleppey backwaters', 'Marari Beach'],
+      overview: 'Kerala moves at its own pace — palm-lined backwaters, spice plantations, misty tea hills and a deep culinary tradition.',
+      food: ['Appam & stew', 'Karimeen pollichathu', 'Malabar biryani', 'Sadya', 'Puttu & kadala curry'],
+      suggestedDays: '6–8 days',
+      tips: ['Book houseboats directly or via licensed operators and confirm inclusions.', 'Eravikulam closes Feb–Mar for calving.', 'Allow extra time on hill roads — distances are deceptive.'],
+      expenses: [
+        { label: 'Stay (per room/night)', value: '₹1,500 – ₹15,000' },
+        { label: 'Houseboat (per boat, overnight)', value: '₹8,000 – ₹25,000' },
+        { label: 'Meals (per person/day)', value: '₹400 – ₹2,500' },
+      ],
+      priceIndex: 1.1,
+    },
+  },
+  {
+    content: goa,
+    meta: {
+      id: 'goa',
+      name: 'Goa',
+      short: 'Beaches & nightlife',
+      tagline: 'Sun, sand, Portuguese lanes and sunset shacks.',
+      imageQuery: 'Goa beach sunset India',
+      tags: ['Beaches', 'Nightlife', 'Romantic', 'Food', 'Adventure'],
+      dailyBudget: [2500, 12000],
+      bestSeason: 'Nov–Feb',
+      bestMonths: [11, 12, 1, 2, 3],
+      offSeasonNote: 'Monsoon (Jun–Sep) closes most beach shacks and water sports; many places offer discounts.',
+      experiences: ['Beach hopping', 'Latin Quarter walks', 'Dolphin boat trips', 'Dudhsagar jeep safari'],
+      popular: ['Baga Beach', 'Fort Aguada', 'Fontainhas', 'Basilica of Bom Jesus', 'Palolem'],
+      overview: 'Goa blends lively northern beaches, Portuguese heritage in Panjim and Old Goa, and the quiet coves of the south.',
+      food: ['Goan fish curry rice', 'Bebinca', 'Pork vindaloo', 'Xacuti', 'Poi bread'],
+      suggestedDays: '4–6 days',
+      tips: ['Base yourself in the north for nightlife, the south for calm.', 'Book December–January stays well ahead.', 'Always keep valid ID when renting scooters.'],
+      expenses: [
+        { label: 'Stay (per room/night)', value: '₹1,500 – ₹20,000' },
+        { label: 'Meals (per person/day)', value: '₹500 – ₹3,000' },
+        { label: 'Scooter rental (per day)', value: '₹400 – ₹600' },
+      ],
+      priceIndex: 1.2,
+    },
+  },
+  {
+    content: tamilnadu,
+    meta: {
+      id: 'tamilnadu',
+      name: 'Tamil Nadu',
+      short: 'Temples & heritage',
+      tagline: 'Dravidian temples, French quarters and filter coffee.',
+      imageQuery: 'Tamil Nadu temple gopuram India',
+      tags: ['Heritage', 'Food', 'Budget', 'Beaches'],
+      dailyBudget: [1800, 8000],
+      bestSeason: 'Nov–Feb',
+      bestMonths: [11, 12, 1, 2, 3],
+      offSeasonNote: 'Summer is hot; northeast monsoon (Oct–Dec) brings heavy rain to the coast.',
+      experiences: ['Temple architecture trails', 'Pondicherry cycling', 'Classical dance evenings', 'Filter-coffee tastings'],
+      popular: ['Meenakshi Temple', 'Shore Temple', 'White Town Pondicherry', 'Auroville', 'Marina Beach'],
+      overview: 'Tamil Nadu is a living museum of Dravidian temples and a rich cuisine, bookended by Chennai’s coast and Madurai’s temple streets.',
+      food: ['Idli–dosa tiffin', 'Chettinad chicken', 'Filter coffee', 'Jigarthanda', 'Kari dosai'],
+      suggestedDays: '5–7 days',
+      tips: ['Dress modestly for temples and carry socks for hot stone floors.', 'Some inner sanctums restrict non-Hindus or phones.', 'Visit temples early to avoid midday heat.'],
+      expenses: [
+        { label: 'Stay (per room/night)', value: '₹1,000 – ₹10,000' },
+        { label: 'Meals (per person/day)', value: '₹300 – ₹1,800' },
+        { label: 'Local transport (per day)', value: '₹400 – ₹2,000' },
+      ],
+      priceIndex: 0.95,
+    },
+  },
+  {
+    content: meghalaya,
+    meta: {
+      id: 'meghalaya',
+      name: 'Meghalaya',
+      short: 'Waterfalls & hidden gems',
+      tagline: 'Cloud forests, living-root bridges and crystal rivers.',
+      imageQuery: 'Meghalaya living root bridge waterfall India',
+      tags: ['Nature', 'Adventure', 'Romantic', 'Budget'],
+      dailyBudget: [2000, 8000],
+      bestSeason: 'Oct–May',
+      bestMonths: [10, 11, 12, 1, 2, 3, 4, 5],
+      offSeasonNote: 'Monsoon (Jun–Sep) brings spectacular waterfalls but landslides and closed trails.',
+      experiences: ['Root-bridge treks', 'Dawki boating', 'Cave exploring', 'Village homestays'],
+      popular: ['Nohkalikai Falls', 'Double-decker root bridge', 'Dawki river', 'Mawlynnong', 'Umiam Lake'],
+      overview: 'Meghalaya’s hills hold dramatic waterfalls, caves, living-root bridges and some of India’s clearest rivers.',
+      food: ['Jadoh', 'Dohneiiong', 'Tungrymbai', 'Momos', 'Local tea'],
+      suggestedDays: '4–6 days',
+      tips: ['Carry an inner line pass/ID as required and check current rules.', 'Start treks early; the Nongriat steps are demanding.', 'Cash is useful in remote villages.'],
+      expenses: [
+        { label: 'Stay (per room/night)', value: '₹1,000 – ₹8,000' },
+        { label: 'Meals (per person/day)', value: '₹300 – ₹1,500' },
+        { label: 'Taxi (per day)', value: '₹2,500 – ₹4,000' },
+      ],
+      priceIndex: 0.95,
+    },
+  },
+  {
+    content: karnataka,
+    meta: {
+      id: 'karnataka',
+      name: 'Karnataka',
+      short: 'Hills, heritage & beaches',
+      tagline: 'Coffee hills, royal Mysuru and ruined Vijayanagara.',
+      imageQuery: 'Hampi ruins sunrise Karnataka India',
+      tags: ['Nature', 'Heritage', 'Beaches', 'Adventure', 'Food'],
+      dailyBudget: [2000, 9000],
+      bestSeason: 'Oct–Feb',
+      bestMonths: [10, 11, 12, 1, 2, 3],
+      offSeasonNote: 'Monsoon turns Coorg misty but roads and beaches are less comfortable; Hampi is hot in summer.',
+      experiences: ['Coffee-estate walks', 'Hampi cycling at sunrise', 'Gokarna beach hopping', 'Mysuru palace evenings'],
+      popular: ['Mysore Palace', 'Hampi', 'Coorg', 'Gokarna', 'Lalbagh'],
+      overview: 'Karnataka spans a tech-city capital, royal Mysuru, the coffee hills of Coorg, the boulder ruins of Hampi and the quiet beaches of Gokarna.',
+      food: ['Masala dosa', 'Bisi bele bath', 'Mysore pak', 'Kodava pandi curry', 'Filter coffee'],
+      suggestedDays: '6–9 days',
+      tips: ['Hampi is best explored by bicycle or scooter.', 'Mysore Palace is illuminated on Sundays and holidays.', 'Gokarna–Hampi is a long drive; plan a travel day.'],
+      expenses: [
+        { label: 'Stay (per room/night)', value: '₹1,200 – ₹12,000' },
+        { label: 'Meals (per person/day)', value: '₹300 – ₹2,000' },
+        { label: 'Local transport (per day)', value: '₹500 – ₹2,500' },
+      ],
+      priceIndex: 1.0,
+    },
+  },
+  {
+    content: rajasthan,
+    meta: {
+      id: 'rajasthan',
+      name: 'Rajasthan',
+      short: 'Heritage & culture',
+      tagline: 'Palaces, forts, bazaars and desert sunsets.',
+      imageQuery: 'Rajasthan palace Jaipur Udaipur India',
+      tags: ['Heritage', 'Romantic', 'Food', 'Adventure'],
+      dailyBudget: [2200, 14000],
+      bestSeason: 'Oct–Mar',
+      bestMonths: [10, 11, 12, 1, 2, 3],
+      offSeasonNote: 'Summer (Apr–Jun) can exceed 42°C; plan only early-morning sightseeing.',
+      experiences: ['Fort and palace tours', 'Camel safari and desert camp', 'Lake-palace boat rides', 'Bazaar shopping'],
+      popular: ['Amber Fort', 'City Palace Udaipur', 'Mehrangarh', 'Jaisalmer Fort', 'Sam Sand Dunes'],
+      overview: 'Rajasthan delivers India’s royal imagination: hilltop forts, painted havelis, lake palaces and the golden dunes of the Thar.',
+      food: ['Dal baati churma', 'Laal maas', 'Pyaaz kachori', 'Ghewar', 'Gatte ki sabzi'],
+      suggestedDays: '7–10 days',
+      tips: ['Distances between cities are long — pace the route.', 'Book fort audio guides to skip queues.', 'Bargain politely in bazaars.'],
+      expenses: [
+        { label: 'Stay (per room/night)', value: '₹1,500 – ₹25,000' },
+        { label: 'Meals (per person/day)', value: '₹400 – ₹3,000' },
+        { label: 'Camel safari & camp', value: '₹2,000 – ₹8,000' },
+      ],
+      priceIndex: 1.05,
+    },
+  },
+];
+
+export const destinations: Destination[] = metas.map(({ meta, content }) => ({
+  ...meta,
+  image: img(meta.id),
+  ...content,
+}));
+
+export const FILTER_TAGS: FilterTag[] = ['Budget', 'Nature', 'Adventure', 'Beaches', 'Heritage', 'Food', 'Romantic', 'Nightlife'];
+
+export const getDestination = (id: string): Destination | undefined => destinations.find((d) => d.id === id);

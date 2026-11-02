@@ -1,0 +1,56 @@
+import { ar, at, gen, rs, type Content } from './helpers';
+
+export const meghalaya: Content = {
+  areas: [
+    ar('shillong', 'Shillong', 25.5788, 91.8933, 'The Scotland of the East — pine hills, lakes, cafés and live music.', [
+      'Café-hopping and live music in Laitumkhrah',
+      'Walk around Ward’s Lake',
+      'Browse Police Bazaar for local crafts',
+    ]),
+    ar('sohra', 'Sohra (Cherrapunji)', 25.27, 91.732, 'Waterfalls, caves and living-root bridges in the cloud forest.', [
+      'Misty viewpoint morning with local tea',
+      'Waterfall-watching from the roadside cafés',
+      'Rest at a hill homestay',
+    ]),
+    ar('mawlynnong', 'Mawlynnong & Dawki', 25.2013, 91.9164, 'Clean villages and glass-clear rivers near the Bangladesh border.', [
+      'Walk the village lanes and bamboo viewpoints',
+      'River-side picnic at Dawki',
+      'Stargazing at a village homestay',
+    ]),
+  ],
+  attractions: [
+    at('wards-lake', "Ward's Lake", 'shillong', ['nature', 'relaxation'], 1, 20, 1, 1, true, 'Morning', 'Boating and garden walks in the town centre.'),
+    at('don-bosco', 'Don Bosco Museum', 'shillong', ['culture', 'heritage'], 2, 100, 3, 1, true, 'Afternoon', 'Northeast India’s cultures in one building.'),
+    at('police-bazaar', 'Police Bazaar & Khyndailad market', 'shillong', ['shopping', 'food'], 2, 0, 1, 1, true, 'Afternoon', 'Local handicrafts, bamboo ware and street food.'),
+    at('shillong-peak', 'Shillong Peak & Elephant Falls', 'shillong', ['nature', 'photography'], 3, 20, 10, 1, true, 'Morning', 'Panoramic viewpoint and a three-tier fall.'),
+    at('umiam', 'Umiam Lake (Barapani) water sports', 'shillong', ['water', 'adventure', 'nature'], 3, 600, 16, 1, true, 'Morning', 'Kayaking, paddle boats and lakeside views.'),
+    at('laitlum', 'Laitlum Canyons', 'shillong', ['nature', 'trekking', 'photography'], 4, 20, 22, 3, false, 'Morning', 'Steps descend into a dramatic canyon.'),
+    at('cathedral', 'Cathedral of Mary Help of Christians', 'shillong', ['heritage', 'temples'], 1, 0, 2, 1, false, 'Morning', 'Colourful modern cathedral.'),
+    at('cafe-music', 'Café-and-music evening, Laitumkhrah', 'shillong', ['culture', 'nightlife'], 3, 400, 3, 1, false, 'Evening', 'Live guitar music in cosy cafés.', { evening: true }),
+    at('nohkalikai', 'Nohkalikai Falls', 'sohra', ['nature', 'photography'], 1.5, 30, 5, 1, true, 'Morning', 'One of India’s tallest plunge waterfalls.'),
+    at('mawsmai', 'Mawsmai Cave', 'sohra', ['adventure', 'nature'], 1, 30, 4, 2, true, 'Morning', 'Lit limestone cave passage.'),
+    at('seven-sisters', 'Seven Sisters (Nohsngithiang) Falls', 'sohra', ['nature', 'photography'], 1, 0, 6, 1, true, 'Afternoon', 'Seven streams over a limestone cliff.'),
+    at('nongriat', 'Double-decker living-root bridge, Nongriat', 'sohra', ['trekking', 'adventure', 'nature', 'photography'], 7, 50, 15, 3, true, 'Early morning', 'A 3,500-step trek to a legendary root bridge.'),
+    at('sohra-ecopark', 'Eco Park (Sohra)', 'sohra', ['nature', 'photography'], 1.5, 20, 3, 1, false, 'Afternoon', 'Valley views and gardens.'),
+    at('thangkharang', 'Thangkharang Park', 'sohra', ['nature', 'photography'], 1.5, 20, 7, 1, false, 'Afternoon', 'Views toward Bangladesh plains.'),
+    at('mawlynnong-village', 'Mawlynnong village', 'mawlynnong', ['culture', 'nature', 'photography'], 2.5, 50, 0, 1, true, 'Morning', 'A tidy village of bamboo dustbins and orchids.'),
+    at('riwai', 'Riwai living-root bridge', 'mawlynnong', ['nature', 'photography'], 1, 50, 3, 2, true, 'Morning', 'Short walk to a root bridge.'),
+    at('dawki-boat', 'Dawki Umngot river boating', 'mawlynnong', ['water', 'photography', 'nature', 'adventure'], 2.5, 600, 20, 1, true, 'Late morning', 'Boats appear to hover on clear water.'),
+    at('shnongpdeng', 'Shnongpdeng kayaking', 'mawlynnong', ['adventure', 'water'], 4, 700, 28, 2, false, 'Morning', 'Kayaking and cliff-jumping in clear pools.'),
+    at('skywalk', 'Mawlynnong bamboo skywalk', 'mawlynnong', ['nature', 'photography'], 1, 20, 1, 1, false, 'Morning', 'Tree-top bamboo platform.'),
+    at('balancing-rock', 'Balancing Rock', 'mawlynnong', ['nature', 'photography'], 0.5, 0, 2, 1, false, 'Afternoon', 'A boulder balanced on a narrow base.'),
+  ],
+  restaurants: [
+    rs('city-hut', 'City Hut Dhaba', 'shillong', 'Khasi / North Indian', 'both', 400, ['Khasi dishes', 'Dal'], ['local', 'traditional']),
+    rs('cafe-shillong', 'Cafe Shillong', 'shillong', 'Café', 'both', 500, ['Coffee', 'Light meals'], ['cafes']),
+    gen('shillong-jadoh', 'Khasi jadoh & dohneiiong eatery', 'shillong', 'Khasi', 'nonveg', 250, ['Jadoh', 'Dohneiiong'], ['local', 'traditional', 'street']),
+    gen('shillong-veg', 'Vegetarian Indian restaurant', 'shillong', 'Vegetarian Indian', 'veg', 300, ['Thali'], ['traditional']),
+    gen('sohra-view', 'Café with canyon view', 'sohra', 'Café', 'both', 400, ['Momos', 'Tea'], ['cafes']),
+    gen('sohra-thali', 'Khasi thali at a homestay', 'sohra', 'Khasi', 'both', 350, ['Home-cooked meal'], ['local', 'traditional']),
+    gen('sohra-momos', 'Tea & momos stall', 'sohra', 'Street food', 'both', 100, ['Momos', 'Tea'], ['street']),
+    gen('sohra-jadoh', 'Local jadoh stall', 'sohra', 'Khasi', 'nonveg', 200, ['Jadoh'], ['street', 'local']),
+    gen('mawly-home', 'Village homestay home-cooked meal', 'mawlynnong', 'Khasi home cooking', 'both', 350, ['Rice, dal, local greens'], ['local', 'traditional']),
+    gen('dawki-cafe', 'Riverside bamboo café', 'mawlynnong', 'Café', 'both', 300, ['Snacks', 'Noodles'], ['cafes', 'street']),
+    gen('mawly-lunch', 'Khasi lunch at a village eatery', 'mawlynnong', 'Khasi', 'both', 300, ['Local lunch'], ['local']),
+  ],
+};
